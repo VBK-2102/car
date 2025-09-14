@@ -30,6 +30,8 @@ const VideoShowreel = () => {
               muted
               autoPlay
               loop
+              preload="metadata"
+              poster="/lg.png"
               style={{
                 minHeight: '400px',
                 width: 'auto',

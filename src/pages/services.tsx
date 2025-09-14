@@ -131,6 +131,8 @@ const Services = () => {
       loop
       playsInline
       src="/v3.mp4"
+      preload="metadata"
+      poster="/lg.png"
       style={{
         minHeight: '100vh',
         minWidth: '100vw',
