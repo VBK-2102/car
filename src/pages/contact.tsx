@@ -32,35 +32,41 @@ const Contact = () => {
     let whatsappMessage = `Hello GMS Car Modifiers! 👋\n\n`;
     whatsappMessage += `I'm interested in your car modification services.\n\n`;
     
-    if (firstName || lastName) {
-      whatsappMessage += `*Name:* ${firstName} ${lastName}\n`;
-    }
-    if (email) {
-      whatsappMessage += `*Email:* ${email}\n`;
-    }
-    if (phone) {
-      whatsappMessage += `*Phone:* ${phone}\n`;
-    }
-    if (carModel) {
-      whatsappMessage += `*Car Model:* ${carModel}\n`;
-    }
-    if (message) {
-      whatsappMessage += `*Requirements:* ${message}\n`;
-    }
+    // Always include name fields, even if empty
+    const fullName = `${firstName || ''} ${lastName || ''}`.trim();
+    whatsappMessage += `*Name:* ${fullName || 'Not provided'}\n`;
+    
+    // Always include other fields
+    whatsappMessage += `*Email:* ${email || 'Not provided'}\n`;
+    whatsappMessage += `*Phone:* ${phone || 'Not provided'}\n`;
+    whatsappMessage += `*Car Model:* ${carModel || 'Not specified'}\n`;
+    whatsappMessage += `*Requirements:* ${message || 'No specific requirements mentioned'}\n`;
     
     whatsappMessage += `\nPlease contact me for more details. Thank you!`;
     
+    console.log('Generated WhatsApp message:', whatsappMessage); // Debug log
     return encodeURIComponent(whatsappMessage);
   };
 
   const sendToWhatsApp = (phoneNumber: string) => {
+    console.log('Form data before sending:', formData); // Debug log
     const message = generateWhatsAppMessage();
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    console.log('WhatsApp URL:', whatsappUrl); // Debug log
     window.open(whatsappUrl, '_blank');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate that at least some form data is provided
+    const hasData = Object.values(formData).some(value => value.trim() !== '');
+    
+    if (!hasData) {
+      alert('Please fill in at least one field before sending the message.');
+      return;
+    }
+    
     // Send to first WhatsApp number by default
     sendToWhatsApp(whatsappNumbers[0]);
   };
@@ -186,10 +192,15 @@ const Contact = () => {
                   placeholder="Tell us about your requirements" 
                   rows={5} 
                 />
-                <Button type="submit" className="w-full animate-fade-in bg-green-600 hover:bg-green-700">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Send WhatsApp Message
-                </Button>
+                <div className="space-y-3">
+                  <Button type="submit" className="w-full animate-fade-in bg-green-600 hover:bg-green-700">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Send WhatsApp Message
+                  </Button>
+                  
+                  {/* Debug button to test message generation */}
+                 
+                </div>
               </form>
             </div>
 
