@@ -96,15 +96,14 @@ const Features = () => {
   loop
   muted
   playsInline
-            preload="metadata"
-            poster="/lg.png"
+            src="/v.mp4"
             style={{
               minHeight: '300px',
               width: 'auto',
               height: 'auto'
             }}
 >
-  <source src="/v.mp4" type="video/mp4" />
+
   Your browser does not support the video tag.
 </video>
 
