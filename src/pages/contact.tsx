@@ -3,9 +3,68 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    carModel: '',
+    message: ''
+  });
+
+  const whatsappNumbers = ['+917619360036', '+917619360037'];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const generateWhatsAppMessage = () => {
+    const { firstName, lastName, email, phone, carModel, message } = formData;
+    
+    let whatsappMessage = `Hello GMS Car Modifiers! 👋\n\n`;
+    whatsappMessage += `I'm interested in your car modification services.\n\n`;
+    
+    if (firstName || lastName) {
+      whatsappMessage += `*Name:* ${firstName} ${lastName}\n`;
+    }
+    if (email) {
+      whatsappMessage += `*Email:* ${email}\n`;
+    }
+    if (phone) {
+      whatsappMessage += `*Phone:* ${phone}\n`;
+    }
+    if (carModel) {
+      whatsappMessage += `*Car Model:* ${carModel}\n`;
+    }
+    if (message) {
+      whatsappMessage += `*Requirements:* ${message}\n`;
+    }
+    
+    whatsappMessage += `\nPlease contact me for more details. Thank you!`;
+    
+    return encodeURIComponent(whatsappMessage);
+  };
+
+  const sendToWhatsApp = (phoneNumber: string) => {
+    const message = generateWhatsAppMessage();
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Send to first WhatsApp number by default
+    sendToWhatsApp(whatsappNumbers[0]);
+  };
+
   const locations = [
     "Bangalore",
     "KR Puram",
@@ -21,6 +80,12 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       details: ["+91 7619360036", "+91 7619360037"]
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      details: ["+91 7619360036", "+91 7619360037"],
+      isWhatsApp: true
     },
     {
       icon: Mail,
@@ -79,16 +144,52 @@ const Contact = () => {
                 Get in touch with us for premium car modification services in Bangalore and surrounding areas.
               </p>
 
-              <form className="space-y-6 animate-fade-in">
+              <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input placeholder="First Name" />
-                  <Input placeholder="Last Name" />
+                  <Input 
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="First Name" 
+                  />
+                  <Input 
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Last Name" 
+                  />
                 </div>
-                <Input type="email" placeholder="Email Address" />
-                <Input type="tel" placeholder="Phone Number" />
-                <Input placeholder="Car Make & Model (Optional)" />
-                <Textarea placeholder="Tell us about your requirements" rows={5} />
-                <Button className="w-full animate-fade-in">Send Message</Button>
+                <Input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address" 
+                />
+                <Input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                />
+                <Input 
+                  name="carModel"
+                  value={formData.carModel}
+                  onChange={handleInputChange}
+                  placeholder="Car Make & Model (Optional)" 
+                />
+                <Textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell us about your requirements" 
+                  rows={5} 
+                />
+                <Button type="submit" className="w-full animate-fade-in bg-green-600 hover:bg-green-700">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Send WhatsApp Message
+                </Button>
               </form>
             </div>
 
@@ -105,7 +206,16 @@ const Contact = () => {
                   <div className="space-y-2 pl-9">
                     {info.details.map((detail, idx) => (
                       <p key={idx} className="text-gray-200">
-                        {detail}
+                        {info.isWhatsApp ? (
+                          <button
+                            onClick={() => sendToWhatsApp(detail.replace(/\s/g, ''))}
+                            className="text-green-400 hover:text-green-300 underline cursor-pointer transition-colors"
+                          >
+                            {detail} (Click to WhatsApp)
+                          </button>
+                        ) : (
+                          detail
+                        )}
                       </p>
                     ))}
                   </div>
