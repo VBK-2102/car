@@ -15,7 +15,7 @@ const Hero = () => {
   }, []);
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gray-900"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-grays-900"
     >
       {/* Video Background */}
       <div className="absolute inset-0">
@@ -26,9 +26,8 @@ const Hero = () => {
           loop
           playsInline
           ref={videoRef}
-          src="/19/v1.mp4"
-          preload="metadata"
-          poster="/lg.png"
+          src="/v1.mp4"
+         
           style={{
             minHeight: '100vh',
             minWidth: '100vw',

@@ -26,8 +26,7 @@ const About = () => {
             loop
             playsInline
             src="/v2.mp4"
-            preload="metadata"
-            poster="/lg.png"
+            
           />
         </div>
         

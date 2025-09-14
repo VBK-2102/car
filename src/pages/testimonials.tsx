@@ -61,8 +61,7 @@ const Testimonials = () => {
           loop
           playsInline
           src="/vv3.mp4"
-          preload="none"
-          poster="/lg.png"
+         
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
