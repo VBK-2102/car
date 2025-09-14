@@ -10,6 +10,7 @@ import Services from "./pages/services";
 import Gallery from "./pages/gallery";
 import Testimonials from "./pages/testimonials";
 import Contact from "./pages/contact";
+import Blog from "./pages/blog";
 import PrivacyPolicy from "./pages/privacy-policy";
 import TermsOfService from "./pages/terms-of-service";
 import CookiePolicy from "./pages/cookie-policy";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
