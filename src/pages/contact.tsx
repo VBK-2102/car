@@ -20,17 +20,17 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["Mobile Number Here"]
+      details: ["+91 7619360036", "+91 7619360037"]
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["your.email@example.com"]
+      details: ["gmscarmodifiers@gmail.com"]
     },
     {
       icon: MapPin,
-      title: "Locations",
-      details: locations
+      title: "Location",
+      details: ["434, Old Madras Rd, Corporation Colony, Bangalore Corporation Industrial Estate, Dooravani Nagar, Bengaluru, Karnataka 560016"]
     },
     {
       icon: Clock,

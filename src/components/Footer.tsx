@@ -22,9 +22,10 @@ const Footer = () => {
     {
       title: "Contact",
       items: [
-        { name: "Bangalore, India", link: "#", isInternal: false },
-        { name: "+91 98765 43210", link: "tel:+919876543210", isInternal: false },
-        { name: "info@gms.com", link: "mailto:info@gms.com", isInternal: false },
+        { name: "Dooravani Nagar, Bengaluru", link: "#", isInternal: false },
+        { name: "+91 7619360036", link: "tel:+917619360036", isInternal: false },
+        { name: "+91 7619360037", link: "tel:+917619360037", isInternal: false },
+        { name: "gmscarmodifiers@gmail.com", link: "mailto:gmscarmodifiers@gmail.com", isInternal: false },
       ],
     },
   ];
