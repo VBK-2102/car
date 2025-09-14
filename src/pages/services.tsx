@@ -133,10 +133,10 @@ const Services = () => {
       src="/v3.mp4"
      
       style={{
-        minHeight: '100vh',
-        minWidth: '100vw',
-        width: 'auto',
-        height: 'auto'
+        width: '90vw',
+        height: '90vh',
+        objectFit: 'cover',
+        objectPosition: 'center center'
       }}
     />
   </div>
