@@ -120,7 +120,7 @@ const Services = () => {
 
       {/* Hero Section with Background Image */}
      <section
-  className="relative mt-16 overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center"
+  className="relative mt-16 overflow-hidden min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-80px)] min-h-[60vh] flex items-center justify-center"
 >
   {/* Background video */}
   <div className="absolute inset-0">
@@ -133,10 +133,12 @@ const Services = () => {
       src="/v3.mp4"
      
       style={{
-        width: '90vw',
-        height: '90vh',
         objectFit: 'cover',
-        objectPosition: 'center center'
+        objectPosition: 'center center',
+        width: '100%',
+        height: '100%',
+        maxWidth: '100vw',
+        maxHeight: '100vh'
       }}
     />
   </div>
@@ -148,13 +150,13 @@ const Services = () => {
   <div className="relative text-center z-10 px-4">
     <WordReveal
       text="Our Services"
-      className="text-3xl md:text-6xl font-bold mb-4 leading-tight text-center text-white"
+      className="text-2xl md:text-6xl font-bold mb-2 md:mb-4 leading-tight text-center text-white"
     />
     <motion.p
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.6 }}
-      className="text-base md:text-lg max-w-3xl mx-auto text-gray-200"
+      className="text-sm md:text-lg max-w-3xl mx-auto text-gray-200 px-2"
     >
       Premium customization – Audio, Interiors, Lighting, Wraps, Alloys, PPF & Ceramic
     </motion.p>
