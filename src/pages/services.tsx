@@ -123,25 +123,19 @@ const Services = () => {
   className="relative mt-16 overflow-hidden min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-80px)] min-h-[60vh] flex items-center justify-center"
 >
   {/* Background video */}
-  <div className="absolute inset-0">
-    <video
-      className="w-full h-full object-cover object-center"
-      autoPlay
-      muted
-      loop
-      playsInline
-      src="/v3.mp4"
-     
-      style={{
-        objectFit: 'cover',
-        objectPosition: 'center center',
-        width: '100%',
-        height: '100%',
-        maxWidth: '100vw',
-        maxHeight: '100vh'
-      }}
-    />
-  </div>
+  <div className="absolute inset-0 flex items-center justify-center">
+  <video
+    className="rounded-lg 
+               w-[500px] h-[235px]   /* default for mobile */
+               md:w-full md:h-full   /* full screen on tablet & above */
+               object-cover object-center"
+    autoPlay
+    muted
+    loop
+    playsInline
+    src="/v3.mp4"
+  />
+</div>
 
   {/* Overlay */}
   <div className="absolute inset-0 bg-black/50" />

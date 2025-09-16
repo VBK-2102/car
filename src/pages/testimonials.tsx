@@ -62,12 +62,7 @@ const Testimonials = () => {
           playsInline
           src="/vv3.mp4"
          
-          style={{
-            minHeight: '100vh',
-            minWidth: '100vw',
-            width: 'auto',
-            height: 'auto'
-          }}
+         
         />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
