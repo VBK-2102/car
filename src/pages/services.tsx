@@ -133,6 +133,9 @@ const Services = () => {
     muted
     loop
     playsInline
+    webkit-playsinline="true"
+    preload="metadata"
+    controls={false}
     src="/v3.mp4"
   />
 </div>
